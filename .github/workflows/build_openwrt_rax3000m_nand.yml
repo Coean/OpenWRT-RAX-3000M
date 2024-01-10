@@ -9,6 +9,7 @@
 #
 
 name: Build-OpenWrt-For-CMCC-RAX3000M-Nand-hanwckf
+permissions: write-all
 
 on:
   repository_dispatch:
