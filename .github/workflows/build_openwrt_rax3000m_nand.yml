@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build-OpenWrt-For-CMCC-RAX3000M-Nand-hanwckf
+name: Build-OpenWrt-For-CMCC-RAX3000M-Nand
 permissions: write-all
 
 on:
@@ -106,8 +106,8 @@ jobs:
         echo -e "$(($(nproc)+1)) thread compile"
         make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
-        echo "DEVICE_NAME=cmcc_rax3000m" >> $GITHUB_ENV
-        echo "TARGET_NAME=mediatek_mt7981" >> $GITHUB_ENV
+        echo "DEVICE_NAME=cmcc-rax3000m" >> $GITHUB_ENV
+        echo "TARGET_NAME=mediatek-mt7981" >> $GITHUB_ENV
         echo "FILE_DATE=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
         # cd openwrt
         # echo -e "$(nproc) thread compile"
@@ -149,7 +149,6 @@ jobs:
         echo "release_tag=${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}" >> $GITHUB_OUTPUT
         touch release.txt
         echo "由衷感谢所有为openwrt无私奉献的大佬们" >> release.txt
-        echo " 固件下载" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: 发布至release
